@@ -1,0 +1,512 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="MyApp">
+<head>
+    <title>Ping My Package App</title>
+    <script src="../Scripts/jquery-1.11.2.min.js"></script>
+    <script src="../Scripts/angular.min.js"></script> 
+</head>
+<body>
+    <div ng-controller="AffiliatesController">
+        <h3>Add Affiliate</h3>
+        <label>Reference #</label>
+        <input type="text" ng-model="newAffiliate.referenceNumber" />
+        <label>Name</label>
+        <input type="text" ng-model="newAffiliate.name" />
+        <label>Address</label>
+        <input type="text" ng-model="newAffiliate.address" />
+        <label>Zipcode</label>
+        <input type="text" ng-model="newAffiliate.zipcode" />
+        <label>Email Address</label>
+        <input type="email" ng-model="newAffiliate.email" />
+        <label>Phone Number</label>
+        <input type="tel" ng-model="newAffiliate.phone"/>
+        <label>Fax Number</label>
+        <input type="tel" ng-model="newAffiliate.fax" />
+        <button type="button" ng-click="addAffiliate()">Add Affiliate</button>
+    </div>
+
+    <div ng-controller="ShipmentsController">
+        <h3>Add New Shipment</h3>
+        <div>
+            <label>Tracking #</label>
+            <input type="text" ng-model="newShipment.trackingNbr" />
+            <label>Shipping Address</label>
+            <input type="text" ng-model="newShipment.shippingAddress" />
+            <label>Zip Code</label>
+            <input type="text" ng-model="newShipment.zipcode" />
+            <label>Shipment Type Id</label>
+            <input type="text" ng-model="newShipment.shipmentTypeId" />
+        </div>
+        <div ng-controller="AffiliatesController">
+            Select an affiliate
+            <select ng-model="newShipment.affiliate.referenceNbr">
+                <option ng-repeat="affiliate in affiliates" ng-selected="{{ affiliate.ReferenceNbr == newShipment.affiliate.referenceNbr }}" value="{{affiliate.ReferenceNbr}}">
+                    {{ affiliate.Name }} - {{ affiliate.ReferenceNbr }}
+                </option>
+                <!--<option ng-options="aff in affiliates">
+                    {{ aff.Name - aff.ReferenceNbr }}
+                </option>-->
+            </select>                      
+        </div>
+        <div>
+            Package Receiver Details :<br />            
+            <label>Reference Number</label><input type="text" ng-model="newShipment.pr.number" /><br />
+            <label>First Name</label><input type="text" ng-model="newShipment.pr.fname" />
+            <label>Middle Name</label><input type="text" ng-model="newShipment.pr.mname" />
+            <label>Last Name</label><input type="text" ng-model="newShipment.pr.lname" /><br />
+            <label>Address</label><input type="text" ng-model="newShipment.pr.address" />
+            <label>Zipcode</label><input type="text" ng-model="newShipment.pr.zipcode"/><br />
+            <label>Email Address</label><input type="email" ng-model="newShipment.pr.email" />
+            <label>Phone Number</label><input type="tel" ng-model="newShipment.pr.phone" />
+        </div>
+        <button type="button" ng-click="addShipment()">Add</button>
+    </div>
+
+    <h1>All Shipments</h1>
+    <div ng-controller="ShipmentsController">
+        <input type="text" ng-model="shipment" />
+        <ul >
+            <li ng-repeat="ship in shipments | filter : shipment" >
+                <p>Shipment Id: <input type="text" name="inputShipmentId" ng-model="ship.Id" disabled/></p>
+                <p>Tracking Number: <input type="text" name="inputTrackNbr" ng-model="ship.TrackingNbr" disabled> </p> 
+                <p>Shipping Address: <input type="text" name="inputShippingAddress" ng-model="ship.ShippingAddress" /></p>
+                <p>Zipcode: <input type="text" name="inputZipcode" ng-model="ship.Zipcode" /> </p>
+                <p>Shipment Type Id: <input type="text" name="inputShipTypeId" ng-model="ship.ShipmentTypeId" /></p>                
+                <div ng-controller="AffiliatesController">
+                    <p>
+                        Affiliate:
+                        <select ng-model="ship.AffiliateReferenceNbr">
+                            <option ng-repeat="affiliate in affiliates" ng-selected="{{ affiliate.ReferenceNbr == ship.AffiliateReferenceNbr }}" value="{{affiliate.ReferenceNbr}}">
+                                {{ affiliate.Name }} - {{ affiliate.ReferenceNbr }}
+                            </option>
+                        </select>
+                    </p>
+                </div>
+                <div>
+                    <b>Package Receiver Info :</b>
+                    <p>
+                        Package Receiver Id:<input type="text" ng-model="ship.PackageReceiver.Id" disabled />
+                        Refference Number: <input type="text" ng-model="ship.PackageReceiver.ReceiverNbr" />
+                    </p>
+                    <p>
+                        First name: <input type="text" name="inputPkgFirstName" ng-model="ship.PackageReceiver.FirstName" />
+                        Middle name: <input type="text" name="inputPkgMiddleName" ng-model="ship.PackageReceiver.MiddleName" />
+                        Last name: <input type="text" name="inputPkgLastName" ng-model="ship.PackageReceiver.LastName" />
+                    </p>
+                    <p>
+                        Address: <input type="text" ng-model="ship.PackageReceiver.Address" /> 
+                        Zipcode: <input type="text" ng-model="ship.PackageReceiver.Zipcode" />
+                    </p>   
+                    <p>
+                        Email: <input type="text" ng-model="ship.PackageReceiver.EmailAddress" />
+                        Phone: <input type="text" ng-model="ship.PackageReceiver.PhoneNumber" />
+                    </p>                                            
+                </div>
+                <div>
+                    <input type="button" value="Update" ng-click="updateShipment(ship.Id, ship)" />
+                    <input type="button" value="Delete" ng-click="deleteShipment(ship.Id)" />
+                </div>
+                
+            </li>
+
+        </ul>
+    </div>
+
+    <h1>Shipments By Affiliate Reference Number :</h1>
+    <div ng-controller="AffiliateShipmentsController">
+        <input type="text" ng-model="affiliateShipments.refNbr" />
+        <button type="button" ng-click="getShipmentsByAffiliateRefNbr(affiliateShipments.refNbr)">Search</button>
+        <ul>
+            <li ng-repeat="ship in affiliateShipments">
+                <p>Tracking # : {{ ship.TrackingNbr }}</p>
+                <p>Shipping Address : {{ ship.ShippingAddress }}</p>
+                <p>Zipcode : {{ ship.Zipcode }}</p>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        var app = angular.module("MyApp", []);
+
+        app.factory('shipmentsFactory', function () {
+
+            var shipments = [];
+
+            var factory = {};
+
+            factory.getShipments = function () {
+                $.ajax({
+                    url: "/ShipmentsMVC/AllShipments",
+                    method: "GET",
+                    accepts: "application/json",
+                    async: false,
+                    success: function (data) {
+                        if (data != "null") {
+                            data = JSON.parse(data);
+                            if (shipments.length > 0)
+                            {
+                                shipments = [];
+                            }
+                            for (var i = 0; i < data.length; i++) {
+                                shipments.push(data[i]);
+                            }
+                        }
+                        
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log("Response Text : " + jqXHR.responseText + "\nText Status : " + textStatus + "\nError Thrown :" + errorThrown);
+                    }
+                });
+                console.log(shipments);
+                return shipments;
+            };
+            
+            factory.postShipment = function (newShipment) {
+                var shipmentToPost = null;
+                $.ajax({
+                    url: "/ShipmentsMVC/AddNewShipment",
+                    method: "POST",
+                    accepts: "application/json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(newShipment),
+                    async: false,
+                    success: function (postedUrl) {
+                        if (postedUrl) {
+                            $.ajax({
+                                url: postedUrl,
+                                method: "GET",
+                                accepts: "application/json",
+                                async: false,
+                                success: function (data) {
+                                    shipmentToPost = data;
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    console.log("Response Text : " + jqXHR.responseText + "\nText Status : " + textStatus + "\nError Thrown :" + errorThrown);
+                                }
+                            });
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log("Response Text : " + jqXHR.responseText + "\nText Status : " + textStatus + "\nError Thrown :" + errorThrown);
+                    }
+                });
+                shipments.push(shipmentToPost);
+                //return shipmentToPost;
+            };
+
+            factory.deleteShipment = function (shipmentId) {
+
+                $.ajax({
+                    url: "/ShipmentsMVC/DeleteShipment/" + shipmentId,
+                    method: "DELETE",
+                    accepts: "application/json",
+                    data: shipmentId,
+                    async: false,
+                    success: function (data) {
+                        if (!data) {
+                            for (var i = 0; i < shipments.length ; i++) {
+                                if (shipments[i].Id == shipmentId) {
+                                    shipments.splice(i, 1);
+                                    break;
+                                }
+                            }
+                        } else {
+                            alert(data.Message);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log("Response Text : " + jqXHR.responseText + "\nText Status : " + textStatus + "\nError Thrown :" + errorThrown);
+                    }
+                });                
+            };
+            
+            factory.updateShipment = function (shipmentId, modShipment) {
+                var shipmentToPost = null;
+                $.ajax({
+                    url: "/ShipmentsMVC/UpdateShipment/"+shipmentId,
+                    method: "PUT",
+                    accepts: "application/json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(modShipment),
+                    async: false,
+                    success: function (postedUrl) {
+                        if (postedUrl) {
+                            $.ajax({
+                                url: postedUrl,
+                                method: "GET",
+                                accepts: "application/json",
+                                async: false,
+                                success: function (data) {
+                                    shipmentToPost = data;
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    console.log("Response Text : " + jqXHR.responseText + "\nText Status : " + textStatus + "\nError Thrown :" + errorThrown);
+                                }
+                            });
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log("Response Text : " + jqXHR.responseText + "\nText Status : " + textStatus + "\nError Thrown :" + errorThrown);
+                    }
+                });
+                
+                //shipments.push(shipmentToPost);
+            };
+
+            return factory;
+        });
+
+        app.factory('affiliatesFactory', function () {
+
+            var affiliates = [];
+
+            var factory = {};
+
+            factory.getAffiliates = function () {
+                console.log("Affiliates Factrory : getAffiliates()");
+                $.ajax({
+                    url: "/AffiliatesMVC/AllAffiliates",
+                    method: "GET",
+                    accepts: "application/json",
+                    async: false,
+                    success: function (data) {
+                        if (data != "null") {
+                            data = JSON.parse(data);
+                            if (affiliates.length > 0) {
+                                affiliates = [];
+                            }
+                            for (var i = 0; i < data.length; i++) {
+                                affiliates.push(data[i]);
+                            }
+                        }
+
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log("Response Text : " + jqXHR.responseText + "\nText Status : " + textStatus + "\nError Thrown :" + errorThrown);
+                    }
+                });
+                console.log(affiliates);
+                return affiliates;
+            };
+
+            factory.postAffiliate = function (newAffiliate) {
+
+                var affiliateToPost = null;
+                $.ajax({
+                    url: "/AffiliatesMVC/AddNewAffiliate",
+                    method: "POST",
+                    accepts: "application/json",
+                    data: newAffiliate,
+                    async: false,
+                    success: function (postedUrl) {
+                        if (postedUrl) {
+                            $.ajax({
+                                url: postedUrl,
+                                method: "GET",
+                                accepts: "application/json",
+                                async: false,
+                                success: function (data) {
+                                    affiliateToPost = data;
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    console.log("Response Text : " + jqXHR.responseText + "\nText Status : " + textStatus + "\nError Thrown :" + errorThrown);
+                                }
+                            });
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log("Response Text : " + jqXHR.responseText + "\nText Status : " + textStatus + "\nError Thrown :" + errorThrown);
+                    }
+                });
+                affiliates.push(affiliateToPost);
+                
+            };
+
+            factory.getAffilateByReferenceNumber = function (referenceNbr) {
+                
+                var affilate = null;
+                $.ajax({
+                    url: "/AffiliatesMVC/GetAffiliateByReferenceNumber",
+                    method: "GET",
+                    accepts: "application/json",
+                    data: referenceNbr,
+                    async: false,
+                    success: function (data) {
+                        affilate = data;
+                        affiliates.push(affilate);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log("Response Text : " + jqXHR.responseText + "\nText Status : " + textStatus + "\nError Thrown :" + errorThrown);
+                    }
+                });
+                return affilate;
+            };
+
+            return factory;
+        });
+
+        app.factory('affiliateShipmentsFactory', function() {
+             
+            var affiliateShipments = [];
+
+            var factory = {};
+
+            factory.getShipmentsByAffiliateRefNbr = function (number) {
+
+                $.ajax({
+                    url: "/ShipmentsMVC/AffiliateShipments/"+number,
+                    method: "GET",
+                    accepts: "application/json",
+                    async: false,
+                    success: function (data) {
+                        if (data != "null") {
+                            data = JSON.parse(data);
+                            if (affiliateShipments.length > 0) {
+                                affiliateShipments = [];
+                            }
+                            for (var i = 0; i < data.length; i++) {
+                                affiliateShipments.push(data[i]);
+                            }
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log("Response Text : " + jqXHR.responseText + "\nText Status : " + textStatus + "\nError Thrown :" + errorThrown);
+                    }
+                });
+
+                return affiliateShipments;
+            }
+
+            return factory;
+        });
+
+        var controllers = {};
+        
+        controllers.ShipmentsController = function ($scope, shipmentsFactory) {
+            
+            init();
+
+            function init() {
+                $scope.shipments = shipmentsFactory.getShipments();                               
+            }
+            
+            $scope.addShipment = function () {
+                console.log("Ref Number ===> " + $scope.newShipment.affiliate.referenceNbr);
+                var packageReceiverObj = new PackageReceiver(
+                    $scope.newShipment.pr.number,
+                    $scope.newShipment.pr.fname,
+                    $scope.newShipment.pr.mname,
+                    $scope.newShipment.pr.lname,
+                    $scope.newShipment.pr.address,
+                    $scope.newShipment.pr.zipcode,
+                    $scope.newShipment.pr.email,
+                    $scope.newShipment.pr.phone
+                    );
+                var shipmentObj = new Shipment(
+                    0,
+                    $scope.newShipment.trackingNbr,
+                    $scope.newShipment.shippingAddress,
+                    $scope.newShipment.zipcode,
+                    $scope.newShipment.affiliate.referenceNbr,
+                    packageReceiverObj, 
+                    $scope.newShipment.shipmentTypeId
+                    );
+                shipmentsFactory.postShipment(shipmentObj);
+                //$scope.newShipment.trackingNbr = "";
+                //$scope.newShipment.shippingAddress = "";
+                //$scope.newShipment.zipcode = "";
+                //$scope.newShipment.affilate.referenceNbr = "";
+            };
+
+            $scope.deleteShipment = function (shipId)
+            {
+                shipmentsFactory.deleteShipment(shipId);
+            }
+
+            $scope.updateShipment = function (shipId, modifiedShip)
+            {
+                console.log("Update Shipment with Id " + shipId);
+                console.log("Modified Shipment Obj ===> ");
+                console.log(modifiedShip);
+                shipmentsFactory.updateShipment(shipId, modifiedShip);
+            }
+        };
+
+        controllers.AffiliatesController = function ($scope, affiliatesFactory) {
+
+            init();
+
+            function init() {
+                $scope.affiliates = affiliatesFactory.getAffiliates();
+            }
+
+            $scope.addAffiliate = function () {
+
+                var affiliateObj = new Affiliate(
+                    $scope.newAffiliate.referenceNumber,
+                    $scope.newAffiliate.name,
+                    $scope.newAffiliate.address,
+                    $scope.newAffiliate.zipcode,
+                    $scope.newAffiliate.email,
+                    $scope.newAffiliate.phone,
+                    $scope.newAffiliate.fax
+                    );
+                affiliatesFactory.postAffiliate(affiliateObj);
+
+                $scope.newAffiliate.referenceNumber = "";
+                $scope.newAffiliate.name = "";
+                $scope.newAffiliate.address = "";
+                $scope.newAffiliate.zipcode = "";
+                $scope.newAffiliate.email = "";
+                $scope.newAffiliate.phone = "";
+                $scope.newAffiliate.fax = "";
+            };
+
+            $scope.getAffilateByReference = function (number) {
+                var affilateObj = affiliatesFactory.getAffilateByReferenceNumber(number);
+            };
+        };
+
+        controllers.AffiliateShipmentsController = function ($scope, affiliateShipmentsFactory) {
+            
+            $scope.getShipmentsByAffiliateRefNbr = function (number) {
+                $scope.affiliateShipments = affiliateShipmentsFactory.getShipmentsByAffiliateRefNbr(number);
+            }
+        };
+        
+        app.controller(controllers);
+
+        var Shipment = function (shipmentId, trackingNbr, shippingAddress, zipcode, affiliateRefNbr, packageReceiver, shipmentTypeId) {
+            this.Id = shipmentId;
+            this.trackingNbr = trackingNbr;
+            this.shippingAddress = shippingAddress;
+            this.zipcode = zipcode;
+            this.affiliateReferenceNbr = affiliateRefNbr;
+            this.PackageReceiver = packageReceiver;
+            this.ShipmentTypeId = shipmentTypeId;
+        };
+
+        var Affiliate = function (refNbr, name, address, zipcode, email, phone, fax) {
+            this.referenceNbr = refNbr;
+            this.name = name;
+            this.address = address;
+            this.zipcode = zipcode;
+            this.emailAddress = email;
+            this.phoneNumber = phone;
+            this.faxNumber = fax;
+        }
+
+        var PackageReceiver = function (number, fname, mname, lname, address, zipcode, email, phone) {
+            this.ReceiverNbr = number;
+            this.FirstName = fname;
+            this.LastName = lname;
+            this.MiddleName = mname;
+            this.Address = address;
+            this.Zipcode = zipcode;
+            this.EmailAddress = email;
+            this.PhoneNumber = phone;
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PingYourPackageModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="PingYourPackageEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Affiliates" EntityType="PingYourPackageModel.Affiliate" />
+    <EntitySet Name="PackageReceivers" EntityType="PingYourPackageModel.PackageReceiver" />
+    <EntitySet Name="Shipments" EntityType="PingYourPackageModel.Shipment" />
+    <EntitySet Name="ShipmentTypes" EntityType="PingYourPackageModel.ShipmentType" />
+    <AssociationSet Name="FK_AffiliateReferenceNbr" Association="PingYourPackageModel.FK_AffiliateReferenceNbr">
+      <End Role="Affiliate" EntitySet="Affiliates" />
+      <End Role="Shipment" EntitySet="Shipments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PackageReceiverNbr" Association="PingYourPackageModel.FK_PackageReceiverNbr">
+      <End Role="PackageReceiver" EntitySet="PackageReceivers" />
+      <End Role="Shipment" EntitySet="Shipments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShipmentTypeId" Association="PingYourPackageModel.FK_ShipmentTypeId">
+      <End Role="ShipmentType" EntitySet="ShipmentTypes" />
+      <End Role="Shipment" EntitySet="Shipments" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Affiliate">
+    <Key>
+      <PropertyRef Name="ReferenceNbr" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReferenceNbr" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Zipcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FaxNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Shipments" Relationship="PingYourPackageModel.FK_AffiliateReferenceNbr" FromRole="Affiliate" ToRole="Shipment" />
+  </EntityType>
+  <EntityType Name="PackageReceiver">
+    <Key>
+      <PropertyRef Name="ReceiverNbr" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReceiverNbr" Type="Int32" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Zipcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Shipments" Relationship="PingYourPackageModel.FK_PackageReceiverNbr" FromRole="PackageReceiver" ToRole="Shipment" />
+  </EntityType>
+  <EntityType Name="Shipment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TrackingNbr" Type="Int32" Nullable="false" />
+    <Property Name="ShippingAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Zipcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="AffiliateReferenceNbr" Type="Int32" />
+    <Property Name="PackageReceiverNbr" Type="Int32" />
+    <Property Name="ShipmentTypeId" Type="Int32" />
+    <NavigationProperty Name="Affiliate" Relationship="PingYourPackageModel.FK_AffiliateReferenceNbr" FromRole="Shipment" ToRole="Affiliate" />
+    <NavigationProperty Name="PackageReceiver" Relationship="PingYourPackageModel.FK_PackageReceiverNbr" FromRole="Shipment" ToRole="PackageReceiver" />
+    <NavigationProperty Name="ShipmentType" Relationship="PingYourPackageModel.FK_ShipmentTypeId" FromRole="Shipment" ToRole="ShipmentType" />
+  </EntityType>
+  <EntityType Name="ShipmentType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Shipments" Relationship="PingYourPackageModel.FK_ShipmentTypeId" FromRole="ShipmentType" ToRole="Shipment" />
+  </EntityType>
+  <Association Name="FK_AffiliateReferenceNbr">
+    <End Type="PingYourPackageModel.Affiliate" Role="Affiliate" Multiplicity="0..1" />
+    <End Type="PingYourPackageModel.Shipment" Role="Shipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Affiliate">
+        <PropertyRef Name="ReferenceNbr" />
+      </Principal>
+      <Dependent Role="Shipment">
+        <PropertyRef Name="AffiliateReferenceNbr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PackageReceiverNbr">
+    <End Type="PingYourPackageModel.PackageReceiver" Role="PackageReceiver" Multiplicity="0..1" />
+    <End Type="PingYourPackageModel.Shipment" Role="Shipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PackageReceiver">
+        <PropertyRef Name="ReceiverNbr" />
+      </Principal>
+      <Dependent Role="Shipment">
+        <PropertyRef Name="PackageReceiverNbr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShipmentTypeId">
+    <End Type="PingYourPackageModel.ShipmentType" Role="ShipmentType" Multiplicity="0..1" />
+    <End Type="PingYourPackageModel.Shipment" Role="Shipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShipmentType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Shipment">
+        <PropertyRef Name="ShipmentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

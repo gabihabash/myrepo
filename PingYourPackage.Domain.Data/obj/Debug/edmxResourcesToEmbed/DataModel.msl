@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PingYourPackageModelStoreContainer" CdmEntityContainer="PingYourPackageEntities">
+    <EntitySetMapping Name="Affiliates">
+      <EntityTypeMapping TypeName="PingYourPackageModel.Affiliate">
+        <MappingFragment StoreEntitySet="Affiliates">
+          <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ReferenceNbr" ColumnName="ReferenceNbr" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PackageReceivers">
+      <EntityTypeMapping TypeName="PingYourPackageModel.PackageReceiver">
+        <MappingFragment StoreEntitySet="PackageReceivers">
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="ReceiverNbr" ColumnName="ReceiverNbr" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shipments">
+      <EntityTypeMapping TypeName="PingYourPackageModel.Shipment">
+        <MappingFragment StoreEntitySet="Shipments">
+          <ScalarProperty Name="ShipmentTypeId" ColumnName="ShipmentTypeId" />
+          <ScalarProperty Name="PackageReceiverNbr" ColumnName="PackageReceiverNbr" />
+          <ScalarProperty Name="AffiliateReferenceNbr" ColumnName="AffiliateReferenceNbr" />
+          <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+          <ScalarProperty Name="ShippingAddress" ColumnName="ShippingAddress" />
+          <ScalarProperty Name="TrackingNbr" ColumnName="TrackingNbr" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShipmentTypes">
+      <EntityTypeMapping TypeName="PingYourPackageModel.ShipmentType">
+        <MappingFragment StoreEntitySet="ShipmentTypes">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,5 @@
+C:\Upn Learning\Solution\PingYourPackage.API.Model\bin\Debug\PingYourPackage.API.Model.dll
+C:\Upn Learning\Solution\PingYourPackage.API.Model\bin\Debug\PingYourPackage.API.Model.pdb
+C:\Upn Learning\Solution\PingYourPackage.API.Model\obj\Debug\PingYourPackage.API.Model.csprojResolveAssemblyReference.cache
+C:\Upn Learning\Solution\PingYourPackage.API.Model\obj\Debug\PingYourPackage.API.Model.dll
+C:\Upn Learning\Solution\PingYourPackage.API.Model\obj\Debug\PingYourPackage.API.Model.pdb

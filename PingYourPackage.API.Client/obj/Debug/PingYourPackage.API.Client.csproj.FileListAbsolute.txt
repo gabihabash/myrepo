@@ -1,0 +1,13 @@
+C:\Upn Learning\Solution\PingYourPackage.API.Client\bin\Debug\PingYourPackage.API.Client.dll.config
+C:\Upn Learning\Solution\PingYourPackage.API.Client\bin\Debug\PingYourPackage.API.Client.dll
+C:\Upn Learning\Solution\PingYourPackage.API.Client\bin\Debug\PingYourPackage.API.Client.pdb
+C:\Upn Learning\Solution\PingYourPackage.API.Client\bin\Debug\Newtonsoft.Json.dll
+C:\Upn Learning\Solution\PingYourPackage.API.Client\bin\Debug\PingYourPackage.API.Model.dll
+C:\Upn Learning\Solution\PingYourPackage.API.Client\bin\Debug\System.Net.Http.dll
+C:\Upn Learning\Solution\PingYourPackage.API.Client\bin\Debug\System.Net.Http.Formatting.dll
+C:\Upn Learning\Solution\PingYourPackage.API.Client\bin\Debug\System.Web.Http.dll
+C:\Upn Learning\Solution\PingYourPackage.API.Client\bin\Debug\PingYourPackage.API.Model.pdb
+C:\Upn Learning\Solution\PingYourPackage.API.Client\bin\Debug\System.Net.Http.xml
+C:\Upn Learning\Solution\PingYourPackage.API.Client\obj\Debug\PingYourPackage.API.Client.csprojResolveAssemblyReference.cache
+C:\Upn Learning\Solution\PingYourPackage.API.Client\obj\Debug\PingYourPackage.API.Client.dll
+C:\Upn Learning\Solution\PingYourPackage.API.Client\obj\Debug\PingYourPackage.API.Client.pdb

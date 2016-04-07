@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>
+        Getting Shipments using Web Worker
+    </title>
+  
+</head>
+<body>
+    <h1>
+        Shipments
+    </h1>
+    <ul id="shipments">
+
+    </ul>
+    <div>
+        <input type="button" value="Click Me" onclick="func();"/>
+    </div>
+    <script src="../Scripts/jquery-1.8.2.min.js"></script>
+    <script>
+        $(document).ready(function GetShipments() {
+            try {
+                var worker = new Worker("../WebWorkerScripts/ShipmentsWorker.js");
+                worker.addEventListener('message', function (result) {
+                    try {
+                        console.log(result);
+                        var shipments = document.getElementById("shipments");
+                        var arr = result.data;
+                        for (var i = 0; i < arr.length; i++) {
+                            var shipment = document.createElement("li");
+                            shipment.textContent = "Shipment Title : "+arr[i].Title + "<nbsp/> Shipment Desc : "+ arr[i].Description;
+                            shipments.appendChild(shipment);
+                        }
+                        console.log("finished");
+                    } catch (e) {
+                        console.log(e);
+                    }
+                });
+                worker.postMessage(null);
+            } catch (e) {
+                console.log("Error while document getting ready : "+ e);
+            }
+        });
+
+        var func = function () {
+            var header = document.getElementsByTagName("h1")
+            $("h1").css("background-color","red");
+        }
+    </script>
+</body>
+
+</html>

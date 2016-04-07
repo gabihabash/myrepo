@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PingYourPackageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityType Name="Affiliates">
+    <Key>
+      <PropertyRef Name="ReferenceNbr" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReferenceNbr" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="250" />
+    <Property Name="Zipcode" Type="varchar" MaxLength="10" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
+    <Property Name="FaxNumber" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="PackageReceivers">
+    <Key>
+      <PropertyRef Name="ReceiverNbr" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReceiverNbr" Type="int" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="250" />
+    <Property Name="Zipcode" Type="varchar" MaxLength="10" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Shipments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TrackingNbr" Type="int" Nullable="false" />
+    <Property Name="ShippingAddress" Type="varchar" MaxLength="250" />
+    <Property Name="Zipcode" Type="varchar" MaxLength="10" />
+    <Property Name="AffiliateReferenceNbr" Type="int" />
+    <Property Name="PackageReceiverNbr" Type="int" />
+    <Property Name="ShipmentTypeId" Type="int" />
+  </EntityType>
+  <EntityType Name="ShipmentTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="20" />
+    <Property Name="Description" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <Association Name="FK_AffiliateReferenceNbr">
+    <End Role="Affiliates" Type="Self.Affiliates" Multiplicity="0..1" />
+    <End Role="Shipments" Type="Self.Shipments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Affiliates">
+        <PropertyRef Name="ReferenceNbr" />
+      </Principal>
+      <Dependent Role="Shipments">
+        <PropertyRef Name="AffiliateReferenceNbr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PackageReceiverNbr">
+    <End Role="PackageReceivers" Type="Self.PackageReceivers" Multiplicity="0..1" />
+    <End Role="Shipments" Type="Self.Shipments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PackageReceivers">
+        <PropertyRef Name="ReceiverNbr" />
+      </Principal>
+      <Dependent Role="Shipments">
+        <PropertyRef Name="PackageReceiverNbr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShipmentTypeId">
+    <End Role="ShipmentTypes" Type="Self.ShipmentTypes" Multiplicity="0..1" />
+    <End Role="Shipments" Type="Self.Shipments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShipmentTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Shipments">
+        <PropertyRef Name="ShipmentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PingYourPackageModelStoreContainer">
+    <EntitySet Name="Affiliates" EntityType="Self.Affiliates" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PackageReceivers" EntityType="Self.PackageReceivers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shipments" EntityType="Self.Shipments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShipmentTypes" EntityType="Self.ShipmentTypes" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AffiliateReferenceNbr" Association="Self.FK_AffiliateReferenceNbr">
+      <End Role="Affiliates" EntitySet="Affiliates" />
+      <End Role="Shipments" EntitySet="Shipments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PackageReceiverNbr" Association="Self.FK_PackageReceiverNbr">
+      <End Role="PackageReceivers" EntitySet="PackageReceivers" />
+      <End Role="Shipments" EntitySet="Shipments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShipmentTypeId" Association="Self.FK_ShipmentTypeId">
+      <End Role="ShipmentTypes" EntitySet="ShipmentTypes" />
+      <End Role="Shipments" EntitySet="Shipments" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

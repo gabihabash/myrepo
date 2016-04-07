@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="demoApp">
+<head>
+</head>
+<body ng-controller = "SimpleController">
+<input type="text" ng-model="name"/>
+<ul>
+    <li ng-repeat="cust in customers | filter:name">
+    {{ cust.name }} - {{ cust.city }}
+    </li>
+</ul>
+
+<script src="Scripts/jquery-1.11.2.min.js"></script>
+<script src="Scripts/angular.min.js"></script>
+<script>
+    var demoApp = angular.module('demoApp', []);
+    
+    var controllers = {};
+    controllers.SimpleController = function($scope){
+        //$scope.customers = [{ name: 'A', city: 'C1'},{ name: 'B', city: 'C2'},{ name:'C', city:'C3'}];        
+        $scope.customers = Shipments();
+    };
+    
+    demoApp.controller(controllers);
+    
+    var Shipments = function()
+    {
+        var result;
+        $.ajax({
+            url: "http://localhost:57986/api/shipments",
+            method: "GET",
+            accepts: "application/json",
+            contentType: "application/json",
+            dataType: "jsonp",
+            crossDomain: true,
+            success: function(data){
+                result = data;
+            },
+            
+        });
+    }
+</script>
+</body>
+</html>

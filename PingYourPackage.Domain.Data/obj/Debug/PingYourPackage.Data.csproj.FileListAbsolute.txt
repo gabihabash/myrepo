@@ -1,0 +1,8 @@
+C:\Upn Learning\Solution\PingYourPackage.Data\bin\Debug\PingYourPackage.Data.dll
+C:\Upn Learning\Solution\PingYourPackage.Data\bin\Debug\PingYourPackage.Data.pdb
+C:\Upn Learning\Solution\PingYourPackage.Data\obj\Debug\PingYourPackage.Data.dll
+C:\Upn Learning\Solution\PingYourPackage.Data\obj\Debug\PingYourPackage.Data.pdb
+C:\Upn Learning\Solution\PingYourPackage.Data\obj\Debug\PingYourPackage.Data.csprojResolveAssemblyReference.cache
+C:\Upn Learning\Solution\PingYourPackage.Data\bin\Debug\PingYourPackage.Data.dll.config
+C:\Upn Learning\Solution\PingYourPackage.Data\bin\Debug\EntityFramework.dll
+C:\Upn Learning\Solution\PingYourPackage.Data\bin\Debug\EntityFramework.xml
