@@ -21,3 +21,26 @@ C:\Upn Learning\Solution\PingYourPackage.Domain\bin\Debug\EntityFramework.xml
 C:\Upn Learning\Solution\PingYourPackage.Domain\obj\Debug\PingYourPackage.Domain.csprojResolveAssemblyReference.cache
 C:\Upn Learning\Solution\PingYourPackage.Domain\obj\Debug\PingYourPackage.Domain.dll
 C:\Upn Learning\Solution\PingYourPackage.Domain\obj\Debug\PingYourPackage.Domain.pdb
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\AutoMapper.Net4.dll
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\PingYourPackage.Domain.dll
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\PingYourPackage.Domain.pdb
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\AutoMapper.dll
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\Microsoft.Practices.Unity.dll
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\PingYourPackage.API.Model.dll
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\PingYourPackage.Domain.Data.dll
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\EntityFramework.dll
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\PingYourPackage.API.Model.pdb
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\PingYourPackage.Domain.Data.pdb
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\AutoMapper.pdb
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\AutoMapper.xml
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\AutoMapper.Net4.pdb
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\Microsoft.Practices.Unity.xml
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+C:\github\PYP\PingYourPackage.Domain\bin\Debug\EntityFramework.xml
+C:\github\PYP\PingYourPackage.Domain\obj\Debug\PingYourPackage.Domain.csprojResolveAssemblyReference.cache
+C:\github\PYP\PingYourPackage.Domain\obj\Debug\PingYourPackage.Domain.dll
+C:\github\PYP\PingYourPackage.Domain\obj\Debug\PingYourPackage.Domain.pdb

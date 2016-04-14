@@ -34,3 +34,39 @@ C:\Upn Learning\Solution\PingYourPackage.ClientApplication\bin\System.Web.WebPag
 C:\Upn Learning\Solution\PingYourPackage.ClientApplication\obj\Debug\PingYourPackage.ClientApplication.csprojResolveAssemblyReference.cache
 C:\Upn Learning\Solution\PingYourPackage.ClientApplication\obj\Debug\PingYourPackage.ClientApplication.dll
 C:\Upn Learning\Solution\PingYourPackage.ClientApplication\obj\Debug\PingYourPackage.ClientApplication.pdb
+C:\github\PYP\PingYourPackage.ClientApplication\bin\PingYourPackage.ClientApplication.dll.config
+C:\github\PYP\PingYourPackage.ClientApplication\bin\PingYourPackage.ClientApplication.dll
+C:\github\PYP\PingYourPackage.ClientApplication\bin\PingYourPackage.ClientApplication.pdb
+C:\github\PYP\PingYourPackage.ClientApplication\bin\Microsoft.Web.Infrastructure.dll
+C:\github\PYP\PingYourPackage.ClientApplication\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\github\PYP\PingYourPackage.ClientApplication\bin\Newtonsoft.Json.dll
+C:\github\PYP\PingYourPackage.ClientApplication\bin\PingYourPackage.API.Client.dll
+C:\github\PYP\PingYourPackage.ClientApplication\bin\PingYourPackage.API.Model.dll
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Net.Http.dll
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Net.Http.Formatting.dll
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Net.Http.WebRequest.dll
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Web.Helpers.dll
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Web.Http.dll
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Web.Http.WebHost.dll
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Web.Mvc.dll
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Web.Razor.dll
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Web.WebPages.Deployment.dll
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Web.WebPages.dll
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Web.WebPages.Razor.dll
+C:\github\PYP\PingYourPackage.ClientApplication\bin\PingYourPackage.API.Client.pdb
+C:\github\PYP\PingYourPackage.ClientApplication\bin\PingYourPackage.API.Model.pdb
+C:\github\PYP\PingYourPackage.ClientApplication\bin\Newtonsoft.Json.xml
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Net.Http.xml
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Net.Http.Formatting.xml
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Net.Http.WebRequest.xml
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Web.Helpers.xml
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Web.Http.xml
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Web.Http.WebHost.xml
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Web.Mvc.xml
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Web.Razor.xml
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Web.WebPages.xml
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Web.WebPages.Deployment.xml
+C:\github\PYP\PingYourPackage.ClientApplication\bin\System.Web.WebPages.Razor.xml
+C:\github\PYP\PingYourPackage.ClientApplication\obj\Debug\PingYourPackage.ClientApplication.csprojResolveAssemblyReference.cache
+C:\github\PYP\PingYourPackage.ClientApplication\obj\Debug\PingYourPackage.ClientApplication.dll
+C:\github\PYP\PingYourPackage.ClientApplication\obj\Debug\PingYourPackage.ClientApplication.pdb

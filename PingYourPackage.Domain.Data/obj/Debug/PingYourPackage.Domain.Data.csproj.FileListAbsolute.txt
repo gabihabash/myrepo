@@ -14,3 +14,11 @@ C:\Upn Learning\Solution\PingYourPackage.Domain.Data\bin\Debug\EntityFramework.x
 C:\Upn Learning\Solution\PingYourPackage.Domain.Data\obj\Debug\PingYourPackage.Domain.Data.csprojResolveAssemblyReference.cache
 C:\Upn Learning\Solution\PingYourPackage.Domain.Data\obj\Debug\PingYourPackage.Domain.Data.dll
 C:\Upn Learning\Solution\PingYourPackage.Domain.Data\obj\Debug\PingYourPackage.Domain.Data.pdb
+C:\github\PYP\PingYourPackage.Domain.Data\bin\Debug\PingYourPackage.Domain.Data.dll.config
+C:\github\PYP\PingYourPackage.Domain.Data\bin\Debug\PingYourPackage.Domain.Data.dll
+C:\github\PYP\PingYourPackage.Domain.Data\bin\Debug\PingYourPackage.Domain.Data.pdb
+C:\github\PYP\PingYourPackage.Domain.Data\bin\Debug\EntityFramework.dll
+C:\github\PYP\PingYourPackage.Domain.Data\bin\Debug\EntityFramework.xml
+C:\github\PYP\PingYourPackage.Domain.Data\obj\Debug\PingYourPackage.Domain.Data.dll
+C:\github\PYP\PingYourPackage.Domain.Data\obj\Debug\PingYourPackage.Domain.Data.pdb
+C:\github\PYP\PingYourPackage.Domain.Data\obj\Debug\PingYourPackage.Domain.Data.csprojResolveAssemblyReference.cache

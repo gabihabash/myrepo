@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AffiliatesController.cs" />
     <Compile Include="Controllers\AffiliateShipmentsController.cs" />
+    <Compile Include="Controllers\PackageReceiverController.cs" />
     <Compile Include="Controllers\ShipmentsController.cs" />
     <Compile Include="Resolver\Configuration.cs" />
     <Compile Include="Resolver\UnityResolver.cs" />

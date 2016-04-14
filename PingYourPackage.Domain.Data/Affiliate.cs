@@ -12,14 +12,14 @@ namespace PingYourPackage.Domain.Data.Models
     using PingYourPackage.Domain.Data.Contracts;
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Affiliate : IEntity
     {
         public Affiliate()
         {
             this.Shipments = new HashSet<Shipment>();
         }
-
+    
         public int Id { get; set; }
         public int ReferenceNbr { get; set; }
         public string Name { get; set; }
@@ -28,7 +28,7 @@ namespace PingYourPackage.Domain.Data.Models
         public string EmailAddress { get; set; }
         public string PhoneNumber { get; set; }
         public string FaxNumber { get; set; }
-
+    
         public virtual ICollection<Shipment> Shipments { get; set; }
     }
 }

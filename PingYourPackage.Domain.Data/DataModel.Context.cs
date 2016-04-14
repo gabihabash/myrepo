@@ -9,11 +9,11 @@
 
 namespace PingYourPackage.Domain.Data
 {
-    using PingYourPackage.Domain.Data.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+    using PingYourPackage.Domain.Data.Models;
+
     public partial class PingYourPackageEntities : DbContext
     {
         public PingYourPackageEntities()

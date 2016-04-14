@@ -38,16 +38,33 @@
             <input type="text" ng-model="newShipment.shipmentTypeId" />
         </div>
         <div ng-controller="AffiliatesController">
-            Select an affiliate
+            Select an Affiliate
             <select ng-model="newShipment.affiliate.referenceNbr">
                 <option ng-repeat="affiliate in affiliates" ng-selected="{{ affiliate.ReferenceNbr == newShipment.affiliate.referenceNbr }}" value="{{affiliate.ReferenceNbr}}">
                     {{ affiliate.Name }} - {{ affiliate.ReferenceNbr }}
                 </option>
-                <!--<option ng-options="aff in affiliates">
+                <option ng-options="aff in affiliates">
                     {{ aff.Name - aff.ReferenceNbr }}
-                </option>-->
+                </option>
             </select>                      
         </div>
+        <div >
+            Select an Affiliate:
+            <!--<form name="affiliateForm" ng-controller="AffiliatesController" ng-model="newShipment.affiliate.referenceNbr" >
+                <ul>
+                    <li ng-repeat="affiliate in affiliates">
+                        <label>                            
+                            <input value="{{affiliate.ReferenceNbr}}" ng-model="newShipment.affiliate.referenceNbr" type="radio" name="name" required />
+                            {{affiliate.Name}}
+                        </label>
+                    </li>
+                </ul>
+                
+                
+                {{affiliate.Name}}
+                <br />
+            </form>-->
+</div>
         <div>
             Package Receiver Details :<br />            
             <label>Reference Number</label><input type="text" ng-model="newShipment.pr.number" /><br />
@@ -63,16 +80,16 @@
     </div>
 
     <h1>All Shipments</h1>
-    <div ng-controller="ShipmentsController">
+    <div ng-controller="ShipmentsController" >
         <input type="text" ng-model="shipment" />
-        <ul >
-            <li ng-repeat="ship in shipments | filter : shipment" >
-                <p>Shipment Id: <input type="text" name="inputShipmentId" ng-model="ship.Id" disabled/></p>
-                <p>Tracking Number: <input type="text" name="inputTrackNbr" ng-model="ship.TrackingNbr" disabled> </p> 
+        <ul>
+            <li ng-repeat="ship in shipments | filter : shipment">
+                <p>Shipment Id: <input type="text" name="inputShipmentId" ng-model="ship.Id" disabled /></p>
+                <p>Tracking Number: <input type="text" name="inputTrackNbr" ng-model="ship.TrackingNbr" disabled> </p>
                 <p>Shipping Address: <input type="text" name="inputShippingAddress" ng-model="ship.ShippingAddress" /></p>
                 <p>Zipcode: <input type="text" name="inputZipcode" ng-model="ship.Zipcode" /> </p>
-                <p>Shipment Type Id: <input type="text" name="inputShipTypeId" ng-model="ship.ShipmentTypeId" /></p>                
-                <div ng-controller="AffiliatesController">
+                <p>Shipment Type Id: <input type="text" name="inputShipTypeId" ng-model="ship.ShipmentTypeId" /></p>
+                <div ng-controller ="AffiliatesController">
                     <p>
                         Affiliate:
                         <select ng-model="ship.AffiliateReferenceNbr">
@@ -94,19 +111,19 @@
                         Last name: <input type="text" name="inputPkgLastName" ng-model="ship.PackageReceiver.LastName" />
                     </p>
                     <p>
-                        Address: <input type="text" ng-model="ship.PackageReceiver.Address" /> 
+                        Address: <input type="text" ng-model="ship.PackageReceiver.Address" />
                         Zipcode: <input type="text" ng-model="ship.PackageReceiver.Zipcode" />
-                    </p>   
+                    </p>
                     <p>
                         Email: <input type="text" ng-model="ship.PackageReceiver.EmailAddress" />
                         Phone: <input type="text" ng-model="ship.PackageReceiver.PhoneNumber" />
-                    </p>                                            
+                    </p>
                 </div>
                 <div>
                     <input type="button" value="Update" ng-click="updateShipment(ship.Id, ship)" />
                     <input type="button" value="Delete" ng-click="deleteShipment(ship.Id)" />
                 </div>
-                
+
             </li>
 
         </ul>
@@ -135,29 +152,30 @@
             var factory = {};
 
             factory.getShipments = function () {
-                $.ajax({
-                    url: "/ShipmentsMVC/AllShipments",
-                    method: "GET",
-                    accepts: "application/json",
-                    async: false,
-                    success: function (data) {
-                        if (data != "null") {
-                            data = JSON.parse(data);
-                            if (shipments.length > 0)
-                            {
-                                shipments = [];
+                if (shipments.length == 0) {
+                    $.ajax({
+                        url: "/ShipmentsMVC/AllShipments",
+                        method: "GET",
+                        accepts: "application/json",
+                        async: false,
+                        success: function (data) {
+                            if (data != "null") {
+                                data = JSON.parse(data);
+                                if (shipments.length > 0) {
+                                    shipments = [];
+                                }
+                                for (var i = 0; i < data.length; i++) {
+                                    shipments.push(data[i]);
+                                }
                             }
-                            for (var i = 0; i < data.length; i++) {
-                                shipments.push(data[i]);
-                            }
+
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.log("Response Text : " + jqXHR.responseText + "\nText Status : " + textStatus + "\nError Thrown :" + errorThrown);
                         }
-                        
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.log("Response Text : " + jqXHR.responseText + "\nText Status : " + textStatus + "\nError Thrown :" + errorThrown);
-                    }
-                });
-                console.log(shipments);
+                    });
+                    console.log(shipments);
+                }
                 return shipments;
             };
             
@@ -264,28 +282,30 @@
 
             factory.getAffiliates = function () {
                 console.log("Affiliates Factrory : getAffiliates()");
-                $.ajax({
-                    url: "/AffiliatesMVC/AllAffiliates",
-                    method: "GET",
-                    accepts: "application/json",
-                    async: false,
-                    success: function (data) {
-                        if (data != "null") {
-                            data = JSON.parse(data);
-                            if (affiliates.length > 0) {
-                                affiliates = [];
+                if (affiliates.length == 0) {
+                    $.ajax({
+                        url: "/AffiliatesMVC/AllAffiliates",
+                        method: "GET",
+                        accepts: "application/json",
+                        async: false,
+                        success: function (data) {
+                            if (data != "null") {
+                                data = JSON.parse(data);
+                                if (affiliates.length > 0) {
+                                    affiliates = [];
+                                }
+                                for (var i = 0; i < data.length; i++) {
+                                    affiliates.push(data[i]);
+                                }
                             }
-                            for (var i = 0; i < data.length; i++) {
-                                affiliates.push(data[i]);
-                            }
-                        }
 
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.log("Response Text : " + jqXHR.responseText + "\nText Status : " + textStatus + "\nError Thrown :" + errorThrown);
-                    }
-                });
-                console.log(affiliates);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.log("Response Text : " + jqXHR.responseText + "\nText Status : " + textStatus + "\nError Thrown :" + errorThrown);
+                        }
+                    });
+                    console.log(affiliates);
+                }
                 return affiliates;
             };
 

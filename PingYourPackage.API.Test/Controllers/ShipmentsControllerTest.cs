@@ -7,6 +7,7 @@ using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PingYourPackage.Domain.Data.Repositories;
 using PingYourPackage.API.Controllers;
+using PingYourPackage.API.Model.Dtos;
 
 namespace PingYourPackage.API.Test.Controllers
 {    
@@ -44,17 +45,21 @@ namespace PingYourPackage.API.Test.Controllers
         //    Assert.AreEqual("value", result);
         //}
 
-        //[TestMethod]
-        //public void Post()
-        //{
-        //    // Arrange
-        //    ValuesController controller = new ValuesController();
+        [TestMethod]
+        public void Post()
+        {
+            // Arrange
+            var controller = new Domain.Api.ShipmentsControllerLogic(repo);
+            var apiController = new ShipmentsController(controller);
 
-        //    // Act
-        //    controller.Post("value");
+            // Act
+            var record = new ShipmentRecord() { TrackingNbr = 123, ShipmentTypeId = 1, PackageReceiverNbr = 123};
+            var response = apiController.Post(record);
 
-        //    // Assert
-        //}
+            // Assert
+            Assert.IsTrue(response.IsSuccessStatusCode);
+            
+        }
 
         //[TestMethod]
         //public void Put()
