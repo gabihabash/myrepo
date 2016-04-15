@@ -1,0 +1,12 @@
+﻿<h1>Shipments By Affiliate Reference Number :</h1>
+<div ng-controller="AffiliateShipmentsController">
+    <input type="text" ng-model="affiliateShipments.refNbr" />
+    <button type="button" ng-click="getShipmentsByAffiliateRefNbr(affiliateShipments.refNbr)">Search</button>
+    <ul>
+        <li ng-repeat="ship in affiliateShipments">
+            <p>Tracking # : {{ ship.TrackingNbr }}</p>
+            <p>Shipping Address : {{ ship.ShippingAddress }}</p>
+            <p>Zipcode : {{ ship.Zipcode }}</p>
+        </li>
+    </ul>
+</div>

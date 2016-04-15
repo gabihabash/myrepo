@@ -1,0 +1,50 @@
+﻿
+<div ng-controller="ShipmentsController">
+    <h1>All Shipments</h1>
+        <input type="text" ng-model="shipment" />
+        <ul>
+            <li ng-repeat="ship in shipments | filter : shipment">
+                <p>Shipment Id: <input type="text" name="inputShipmentId" ng-model="ship.Id" disabled /></p>
+                <p>Tracking Number: <input type="text" name="inputTrackNbr" ng-model="ship.TrackingNbr" disabled> </p>
+                <p>Shipping Address: <input type="text" name="inputShippingAddress" ng-model="ship.ShippingAddress" /></p>
+                <p>Zipcode: <input type="text" name="inputZipcode" ng-model="ship.Zipcode" /> </p>
+                <p>Shipment Type Id: <input type="text" name="inputShipTypeId" ng-model="ship.ShipmentTypeId" /></p>
+                <div ng-controller="AffiliatesController">
+                    <p>
+                        Affiliate:
+                        <select ng-model="ship.AffiliateReferenceNbr">
+                            <option ng-repeat="affiliate in affiliates" ng-selected="{{ affiliate.ReferenceNbr == ship.AffiliateReferenceNbr }}" value="{{affiliate.ReferenceNbr}}">
+                                {{ affiliate.Name }} - {{ affiliate.ReferenceNbr }}
+                            </option>
+                        </select>
+                    </p>
+                </div>
+                <div>
+                    <b>Package Receiver Info :</b>
+                    <p>
+                        Package Receiver Id:<input type="text" ng-model="ship.PackageReceiver.Id" disabled />
+                        Refference Number: <input type="text" ng-model="ship.PackageReceiver.ReceiverNbr" />
+                    </p>
+                    <p>
+                        First name: <input type="text" name="inputPkgFirstName" ng-model="ship.PackageReceiver.FirstName" />
+                        Middle name: <input type="text" name="inputPkgMiddleName" ng-model="ship.PackageReceiver.MiddleName" />
+                        Last name: <input type="text" name="inputPkgLastName" ng-model="ship.PackageReceiver.LastName" />
+                    </p>
+                    <p>
+                        Address: <input type="text" ng-model="ship.PackageReceiver.Address" />
+                        Zipcode: <input type="text" ng-model="ship.PackageReceiver.Zipcode" />
+                    </p>
+                    <p>
+                        Email: <input type="text" ng-model="ship.PackageReceiver.EmailAddress" />
+                        Phone: <input type="text" ng-model="ship.PackageReceiver.PhoneNumber" />
+                    </p>
+                </div>
+                <div>
+                    <input type="button" value="Update" ng-click="updateShipment(ship.Id, ship)" />
+                    <input type="button" value="Delete" ng-click="deleteShipment(ship.Id)" />
+                </div>
+
+            </li>
+
+        </ul>
+    </div>

@@ -127,6 +127,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
     <Content Include="HTML\index.html" />
+    <Content Include="HTML\Partials\PackageReceivers.html" />
+    <Content Include="HTML\Partials\Shipments.html" />
     <Content Include="HTML\Shipments.html" />
     <Content Include="HTML\ShipmentsUsingAngular.html" />
     <Content Include="Scripts\angular.min.js" />

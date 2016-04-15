@@ -3,7 +3,8 @@
 <head>
     <title>Ping My Package App</title>
     <script src="../Scripts/jquery-1.11.2.min.js"></script>
-    <script src="../Scripts/angular.min.js"></script> 
+    <script src="../Scripts/angular.js"></script> 
+    <script src="../Scripts/angular-route.js"></script> 
 </head>
 <body>
     <div ng-controller="AffiliatesController">
@@ -43,14 +44,11 @@
                 <option ng-repeat="affiliate in affiliates" ng-selected="{{ affiliate.ReferenceNbr == newShipment.affiliate.referenceNbr }}" value="{{affiliate.ReferenceNbr}}">
                     {{ affiliate.Name }} - {{ affiliate.ReferenceNbr }}
                 </option>
-                <option ng-options="aff in affiliates">
-                    {{ aff.Name - aff.ReferenceNbr }}
-                </option>
             </select>                      
         </div>
-        <div >
+        <!--<div >
             Select an Affiliate:
-            <!--<form name="affiliateForm" ng-controller="AffiliatesController" ng-model="newShipment.affiliate.referenceNbr" >
+            <form name="affiliateForm" ng-controller="AffiliatesController" ng-model="newShipment.affiliate.referenceNbr" >
                 <ul>
                     <li ng-repeat="affiliate in affiliates">
                         <label>                            
@@ -63,8 +61,8 @@
                 
                 {{affiliate.Name}}
                 <br />
-            </form>-->
-</div>
+            </form>
+        </div>-->
         <div>
             Package Receiver Details :<br />            
             <label>Reference Number</label><input type="text" ng-model="newShipment.pr.number" /><br />
@@ -79,71 +77,19 @@
         <button type="button" ng-click="addShipment()">Add</button>
     </div>
 
-    <h1>All Shipments</h1>
-    <div ng-controller="ShipmentsController" >
-        <input type="text" ng-model="shipment" />
-        <ul>
-            <li ng-repeat="ship in shipments | filter : shipment">
-                <p>Shipment Id: <input type="text" name="inputShipmentId" ng-model="ship.Id" disabled /></p>
-                <p>Tracking Number: <input type="text" name="inputTrackNbr" ng-model="ship.TrackingNbr" disabled> </p>
-                <p>Shipping Address: <input type="text" name="inputShippingAddress" ng-model="ship.ShippingAddress" /></p>
-                <p>Zipcode: <input type="text" name="inputZipcode" ng-model="ship.Zipcode" /> </p>
-                <p>Shipment Type Id: <input type="text" name="inputShipTypeId" ng-model="ship.ShipmentTypeId" /></p>
-                <div ng-controller ="AffiliatesController">
-                    <p>
-                        Affiliate:
-                        <select ng-model="ship.AffiliateReferenceNbr">
-                            <option ng-repeat="affiliate in affiliates" ng-selected="{{ affiliate.ReferenceNbr == ship.AffiliateReferenceNbr }}" value="{{affiliate.ReferenceNbr}}">
-                                {{ affiliate.Name }} - {{ affiliate.ReferenceNbr }}
-                            </option>
-                        </select>
-                    </p>
-                </div>
-                <div>
-                    <b>Package Receiver Info :</b>
-                    <p>
-                        Package Receiver Id:<input type="text" ng-model="ship.PackageReceiver.Id" disabled />
-                        Refference Number: <input type="text" ng-model="ship.PackageReceiver.ReceiverNbr" />
-                    </p>
-                    <p>
-                        First name: <input type="text" name="inputPkgFirstName" ng-model="ship.PackageReceiver.FirstName" />
-                        Middle name: <input type="text" name="inputPkgMiddleName" ng-model="ship.PackageReceiver.MiddleName" />
-                        Last name: <input type="text" name="inputPkgLastName" ng-model="ship.PackageReceiver.LastName" />
-                    </p>
-                    <p>
-                        Address: <input type="text" ng-model="ship.PackageReceiver.Address" />
-                        Zipcode: <input type="text" ng-model="ship.PackageReceiver.Zipcode" />
-                    </p>
-                    <p>
-                        Email: <input type="text" ng-model="ship.PackageReceiver.EmailAddress" />
-                        Phone: <input type="text" ng-model="ship.PackageReceiver.PhoneNumber" />
-                    </p>
-                </div>
-                <div>
-                    <input type="button" value="Update" ng-click="updateShipment(ship.Id, ship)" />
-                    <input type="button" value="Delete" ng-click="deleteShipment(ship.Id)" />
-                </div>
+    <div data-ng-view>
 
-            </li>
-
-        </ul>
     </div>
 
-    <h1>Shipments By Affiliate Reference Number :</h1>
-    <div ng-controller="AffiliateShipmentsController">
-        <input type="text" ng-model="affiliateShipments.refNbr" />
-        <button type="button" ng-click="getShipmentsByAffiliateRefNbr(affiliateShipments.refNbr)">Search</button>
-        <ul>
-            <li ng-repeat="ship in affiliateShipments">
-                <p>Tracking # : {{ ship.TrackingNbr }}</p>
-                <p>Shipping Address : {{ ship.ShippingAddress }}</p>
-                <p>Zipcode : {{ ship.Zipcode }}</p>
-            </li>
-        </ul>
-    </div>
+    <a href="#/search">
+        Search Shipments By Affiliate Reference Number
+    </a>
+
 
     <script>
-        var app = angular.module("MyApp", []);
+        var app = angular.module("MyApp", ['ngRoute']);
+
+        
 
         app.factory('shipmentsFactory', function () {
 
@@ -495,6 +441,19 @@
         };
         
         app.controller(controllers);
+
+        app.config(function ($routeProvider) {
+            $routeProvider
+            .when('/', {
+                controller: 'ShipmentsController',
+                templateUrl: 'Partials/Shipments.html'
+            })
+            .when('/search', {
+                controller: 'AffiliateShipmentsController',
+                templateUrl: 'Partials/ShipmentsByAffiliate.html',
+            })
+            .otherwise({ redirectTo: '/' })
+        });
 
         var Shipment = function (shipmentId, trackingNbr, shippingAddress, zipcode, affiliateRefNbr, packageReceiver, shipmentTypeId) {
             this.Id = shipmentId;
