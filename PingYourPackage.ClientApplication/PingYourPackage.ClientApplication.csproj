@@ -129,6 +129,7 @@
     <Content Include="HTML\index.html" />
     <Content Include="HTML\Partials\PackageReceivers.html" />
     <Content Include="HTML\Partials\Shipments.html" />
+    <Content Include="HTML\Partials\ShipmentsByAffiliate.html" />
     <Content Include="HTML\Shipments.html" />
     <Content Include="HTML\ShipmentsUsingAngular.html" />
     <Content Include="Scripts\angular.min.js" />
